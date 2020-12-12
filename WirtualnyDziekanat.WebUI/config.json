@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "AppDbConnectionString": "server=(localdb)\\v11.0;Database=WirtualnyDziekanatDb;Integrated Security=true;MultipleActiveResultSets=true;"
+  }
+}

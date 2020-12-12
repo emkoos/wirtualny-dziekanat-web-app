@@ -8,8 +8,8 @@ namespace WirtualnyDziekanat.Domain.Entities
     {
         public string Name { get; set; }
         public string Opis { get; set; }
-        public ICollection<Teacher> Teachers { get; set; }
-            = new List<Teacher>();
+        public ICollection<TeacherSubject> TeacherSubjects { get; set; }
+            = new List<TeacherSubject>();
         public ICollection<Grade> Grades { get; set; }
     }
 }
