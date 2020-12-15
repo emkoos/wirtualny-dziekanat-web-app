@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -9,7 +10,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WirtualnyDziekanat.Application.Services;
+using WirtualnyDziekanat.Domain.Repositories;
 using WirtualnyDziekanat.Infrastructure.Data;
+using WirtualnyDziekanat.Infrastructure.Mappers;
+using WirtualnyDziekanat.Infrastructure.Repositories;
+using WirtualnyDziekanat.Infrastructure.Services;
 
 namespace WirtualnyDziekanat.WebUI
 {
@@ -31,7 +37,10 @@ namespace WirtualnyDziekanat.WebUI
                     optionsbuilder => optionsbuilder.MigrationsAssembly("WirtualnyDziekanat.WebUI"));
 
             });
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddJsonOptions(x => x.JsonSerializerOptions.WriteIndented = true);
+            services.AddScoped<IInformationRepository, InformationRepository>();
+            services.AddScoped<IInformationService, InformationService>();
+            services.AddSingleton(AutoMapperConfig.Initialize());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
