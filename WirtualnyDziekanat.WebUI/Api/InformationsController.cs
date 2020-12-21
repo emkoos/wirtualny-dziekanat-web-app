@@ -26,13 +26,44 @@ namespace WirtualnyDziekanat.WebUI.Api
             return Json(informations);
         }
 
+        [HttpGet("{informationId}")]
+        public async Task<IActionResult> Get(Guid informationId)
+        {
+            var information = await _informationService.GetAsync(informationId);
+            if (information == null)
+            {
+                return NotFound();
+            }
+
+            return Json(information);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CreateInformation command)
         {
             command.InfoId = Guid.NewGuid();
             await _informationService.CreateAsync(command.InfoId, command.Title, command.Contents, command.IsActive, command.PriorityStatus);
 
+            // Code 201
             return Created($"/informations/{command.InfoId}", null);
+        }
+
+        [HttpPut("{informationId}")]
+        public async Task<IActionResult> Put(Guid informationId, [FromBody]UpdateInformation command)
+        {
+            await _informationService.UpdateAsync(informationId, command.Title, command.Contents, command.IsActive);
+
+            // Code 204
+            return NoContent();
+        }
+
+        [HttpDelete("{informationId}")]
+        public async Task<IActionResult> Delete(Guid informationId)
+        {
+            await _informationService.DeleteAsync(informationId);
+
+            // Code 204
+            return NoContent();
         }
     }
 }

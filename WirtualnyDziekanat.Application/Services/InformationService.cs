@@ -53,9 +53,15 @@ namespace WirtualnyDziekanat.Application.Services
         public async Task UpdateAsync(Guid id, string title, string contents, bool isActive)
         {
             var information = await _informationRepository.GetAsync(id);
+            if (information == null)
+            {
+                throw new Exception($"Informacja o numerze: '{id}' nie istnieje w systemie.");
+            }
+
             information.Title = title;
             information.Contents = contents;
             information.IsActive = isActive;
+            information.UpdatedAt = DateTime.UtcNow;
 
             await _informationRepository.UpdateAsync(information);
         }

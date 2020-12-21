@@ -34,18 +34,22 @@ namespace WirtualnyDziekanat.Infrastructure.Repositories
 
         public async Task AddAsync(Information information)
         {
-            _context.Add(information);
+            _context.Information.Add(information);
+            _context.SaveChanges();
             await Task.CompletedTask;
         }
 
         public async Task UpdateAsync(Information information)
         {
-            throw new NotImplementedException();
+            _context.Information.Update(information);
+            _context.SaveChanges();
+            await Task.CompletedTask;
         }
 
         public async Task DeleteAsync(Information information)
         {
             _context.Information.Remove(information);
+            _context.SaveChanges();
             await Task.CompletedTask;
         }
 
