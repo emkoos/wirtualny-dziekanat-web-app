@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using WirtualnyDziekanat.Application.DTO;
 using WirtualnyDziekanat.Domain.Entities;
 
-namespace WirtualnyDziekanat.Domain.Repositories
+namespace WirtualnyDziekanat.Application.Services
 {
-    public interface IGradeRepository
+    public interface IGradeService
     {
         Task<Student> GetAsync(Guid id);
         Task<IEnumerable<Student>> BrowseAsync();
-        void Add(Grade grade);
-        void Update(Grade graden);
-        void Delete(Grade grade);
     }
 }
