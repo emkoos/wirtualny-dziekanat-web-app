@@ -10,6 +10,6 @@ namespace WirtualnyDziekanat.Application.Services
     public interface IGradeService
     {
         Task<Student> GetAsync(Guid id);
-        Task<IEnumerable<Student>> BrowseAsync();
+        Task<IEnumerable<StudentDTO>> BrowseAsync();
     }
 }

@@ -13,6 +13,11 @@ namespace WirtualnyDziekanat.Infrastructure.Mappers
             => new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Information, InformationDTO>();
+                cfg.CreateMap<Student, StudentDTO>();
+                cfg.CreateMap<Teacher, TeacherDTO>();
+                cfg.CreateMap<Subject, SubjectDTO>();
+                cfg.CreateMap<Grade, GradeDTO>();
+                cfg.CreateMap<TeacherSubject, TeacherSubjectDTO>();
             }).CreateMapper();
     }
 }

@@ -51,6 +51,7 @@ namespace WirtualnyDziekanat.WebUI
             services.AddScoped<IGradeRepository, GradeRepository>();
             services.AddScoped<IGradeService, GradeService>();
             services.AddSingleton(AutoMapperConfig.Initialize());
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -26,13 +26,11 @@ namespace WirtualnyDziekanat.Application.Services
 
             return student;
         }
-        public async Task<IEnumerable<Student>> BrowseAsync()
+        public async Task<IEnumerable<StudentDTO>> BrowseAsync()
         {
             var grades = await _gradeRepository.BrowseAsync();
-
-            return _mapper.Map<IEnumerable<Student>>(grades); ;
-
             
+            return _mapper.Map<IEnumerable<StudentDTO>>(grades); ;
         }
     }
 }
