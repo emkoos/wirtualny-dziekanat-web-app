@@ -6,7 +6,7 @@ namespace WirtualnyDziekanat.Application.DTO
 {
     public class GradeDTO
     {
-        public decimal Grade { get; set; }
+        public decimal Value { get; set; }
         public StudentDTO Student { get; set; }
         public SubjectDTO Subject { get; set; }
     }
