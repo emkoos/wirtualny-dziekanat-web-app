@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using WirtualnyDziekanat.Domain.Entities;
 
 namespace WirtualnyDziekanat.Domain.Repositories
 {
     public interface ITeacherRepository
     {
-        Teacher Get(Guid id);
-        IEnumerable<Teacher> Browse(string lastName = "");
-        void Add(Teacher teacher);
-        void Update(Teacher teacher);
-        void Delete(Teacher teacher);
+        Task<Teacher> GetAsync(Guid id);
+        Task<IEnumerable<Teacher>> BrowseAsync(string lastName = "");
+        Task AddAsync(Teacher teacher);
+        Task UpdateAsync(Teacher teacher);
+        Task DeleteAsync(Teacher teacher);
     }
 }

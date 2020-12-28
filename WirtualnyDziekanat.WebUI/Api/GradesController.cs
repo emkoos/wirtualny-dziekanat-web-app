@@ -17,6 +17,7 @@ namespace WirtualnyDziekanat.WebUI.Api
             _gradeService = gradeService;
         }
 
+        [Route("/gradesDetails")]
         [HttpGet]
         public async Task<IActionResult> Get()
         {

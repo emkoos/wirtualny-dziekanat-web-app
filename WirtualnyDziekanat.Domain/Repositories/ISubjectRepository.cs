@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using WirtualnyDziekanat.Domain.Entities;
 
 namespace WirtualnyDziekanat.Domain.Repositories
 {
     public interface ISubjectRepository
     {
-        Subject Get(Guid id);
-        IEnumerable<Subject> Browse(string name = "");
-        void Add(Subject subject);
-        void Update(Subject subject);
-        void Delete(Subject subject);
+        Task<Subject> GetAsync(Guid id);
+        Task<IEnumerable<Subject>> BrowseAsync(string name = "");
+        Task AddAsync(Subject subject);
+        Task UpdateAsync(Subject subject);
+        Task DeleteAsync(Subject subject);
     }
 }

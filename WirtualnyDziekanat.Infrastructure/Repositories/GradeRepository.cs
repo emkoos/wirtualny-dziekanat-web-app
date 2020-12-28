@@ -31,6 +31,7 @@ namespace WirtualnyDziekanat.Infrastructure.Repositories
             return await Task.FromResult(student);
         }
 
+
         public async Task<IEnumerable<Student>> BrowseAsync()
         {
             var students = _context.Students
