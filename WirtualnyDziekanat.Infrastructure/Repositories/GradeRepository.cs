@@ -19,48 +19,43 @@ namespace WirtualnyDziekanat.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<Student> GetAsync(Guid id)
+        public async Task<Grade> GetGradeAsync(Guid id)
         {
-            var student = _context.Students
-                .Include(s => s.Grades)
-                    .ThenInclude(t => t.Subject)
+            var grade = _context.Grades
+                .Include(g => g.Subject)
                         .ThenInclude(n => n.TeacherSubjects)
-                            .ThenInclude(n => n.Teacher)
+                            .ThenInclude(s => s.Teacher)
                 .SingleOrDefault(x => x.Id == id);
 
-            return await Task.FromResult(student);
+            return await Task.FromResult(grade);
         }
 
-
-        public async Task<IEnumerable<Student>> BrowseAsync()
+        public async Task<IEnumerable<Grade>> BrowseStudentGradesAsync(Guid id)
         {
-            var students = _context.Students
-                .Include(g => g.Grades)
-                    .ThenInclude(s => s.Subject)
-                        .ThenInclude(ts => ts.TeacherSubjects)
-                            .ThenInclude(t => t.Teacher)
-                .AsEnumerable();
-
-            return await Task.FromResult(students);
+            var grades = _context.Grades.Where(g => g.Student.Id == id).AsEnumerable();
+            
+            return await Task.FromResult(grades);
         }
 
-        public void Add(Grade grade)
+        public async Task AddAsync(Grade grade)
         {
-            throw new NotImplementedException();
+            _context.Grades.Add(grade);
+            _context.SaveChanges();
+            await Task.CompletedTask;
         }
 
-        
-
-        public void Delete(Grade grade)
+        public async Task UpdateAsync(Grade grade)
         {
-            throw new NotImplementedException();
+            _context.Grades.Update(grade);
+            _context.SaveChanges();
+            await Task.CompletedTask;
         }
 
-        
-
-        public void Update(Grade graden)
+        public async Task DeleteAsync(Grade grade)
         {
-            throw new NotImplementedException();
-        }
+            _context.Grades.Remove(grade);
+            _context.SaveChanges();
+            await Task.CompletedTask;
+        }        
     }
 }

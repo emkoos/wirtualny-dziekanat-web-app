@@ -11,7 +11,7 @@ namespace WirtualnyDziekanat.Domain.Repositories
         Task<Grade> GetGradeAsync(Guid id); // szczegóły 1 oceny /grades/{idGrade}  :przedmiot i nauczyciel
         Task<IEnumerable<Grade>> BrowseStudentGradesAsync(Guid id); // wszystkie oceny danego studenta
         Task AddAsync(Grade grade);
-        Task UpdateAsync(Grade graden);
+        Task UpdateAsync(Grade grade);
         Task DeleteAsync(Grade grade);  
     }
 }
