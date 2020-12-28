@@ -11,7 +11,7 @@ namespace WirtualnyDziekanat.Application.Services
     {
         Task<GradeDTO> GetGradeAsync(Guid id);
         Task<IEnumerable<GradeDTO>> BrowseStudentGradesAsync(Guid id); // wszystkie oceny danego studenta
-        Task CreateAsync(Guid id, decimal value, Guid studentId, Guid subjectId);
+        Task CreateAsync(Guid id, decimal value, Student student, Subject subject);
         Task UpdateAsync(Guid id, decimal value);
         Task DeleteAsync(Guid id);
     }

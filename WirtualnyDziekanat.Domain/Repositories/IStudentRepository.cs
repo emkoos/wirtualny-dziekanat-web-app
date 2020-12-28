@@ -10,6 +10,7 @@ namespace WirtualnyDziekanat.Domain.Repositories
     {
         // One model data
         Task<Student> GetStudentAsync(Guid id);   // dane 1 studenta
+        Task<Student> GetStudentAsync(long pesel);
         Task<IEnumerable<Student>> BrowseStudentsAsync(string lastName = ""); // lista wszystkich studentów
         Task AddStudentAsync(Student student); // dodanie danych 1 studenta
         Task UpdateStudentAsync(Student student); // edycja danych 1 studenta

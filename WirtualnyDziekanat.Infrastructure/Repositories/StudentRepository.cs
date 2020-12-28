@@ -22,6 +22,9 @@ namespace WirtualnyDziekanat.Infrastructure.Repositories
         public async Task<Student> GetStudentAsync(Guid id)
             => await Task.FromResult(_context.Students.SingleOrDefault(x => x.Id == id));
 
+        public async Task<Student> GetStudentAsync(long pesel)
+            => await Task.FromResult(_context.Students.SingleOrDefault(x => x.Pesel == pesel));
+
         public async Task<Student> GetStudentDetailsAsync(Guid id)
         {
             var student = _context.Students
