@@ -14,7 +14,7 @@ namespace WirtualnyDziekanat.Domain.Repositories
         Task AddStudentAsync(Student student); // dodanie danych 1 studenta
         Task UpdateStudentAsync(Student student); // edycja danych 1 studenta
         Task DeleteStudentAsync(Student student); // usunięcie 1 studenta
-        // Models trees of data
+        // Models tree of data
         Task<Student> GetStudentDetailsAsync(Guid id);  // Drzewko dla 1 studenta
         Task<IEnumerable<Student>> BrowseStudentsDetailsAsync(); // Drzewko dla wszystkich studentów
     }
