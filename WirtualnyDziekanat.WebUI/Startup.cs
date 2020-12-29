@@ -17,6 +17,7 @@ using WirtualnyDziekanat.Infrastructure.Mappers;
 using WirtualnyDziekanat.Infrastructure.Repositories;
 using WirtualnyDziekanat.Infrastructure.Services;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace WirtualnyDziekanat.WebUI
 {
@@ -46,10 +47,15 @@ namespace WirtualnyDziekanat.WebUI
                 .AddNewtonsoftJson(x => x.SerializerSettings.Formatting = Formatting.Indented);
 
 
+
             services.AddScoped<IInformationRepository, InformationRepository>();
             services.AddScoped<IInformationService, InformationService>();
             services.AddScoped<IGradeRepository, GradeRepository>();
             services.AddScoped<IGradeService, GradeService>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<ITeacherRepository, TeacherRepository>();
+            services.AddScoped<ITeacherService, TeacherService>();
             services.AddSingleton(AutoMapperConfig.Initialize());
 
         }

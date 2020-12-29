@@ -32,7 +32,8 @@ namespace WirtualnyDziekanat.Infrastructure.Repositories
                     .ThenInclude(g => g.Subject)
                         .ThenInclude(n => n.TeacherSubjects)
                             .ThenInclude(s => s.Teacher)
-                .SingleOrDefault(x => x.Id == id);
+                 .SingleOrDefault(x => x.Id == id);
+            
 
             return await Task.FromResult(student);
         }
