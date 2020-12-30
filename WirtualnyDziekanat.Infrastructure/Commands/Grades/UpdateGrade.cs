@@ -6,6 +6,7 @@ namespace WirtualnyDziekanat.Infrastructure.Commands.Grades
 {
     public class UpdateGrade
     {
-
+        public Guid GradeId { get; set; }
+        public decimal Value { get; set; }
     }
 }
