@@ -65,5 +65,16 @@ namespace WirtualnyDziekanat.Application.Services
             var subject = await _subjectRepository.GetAsync(id);
             await _subjectRepository.DeleteAsync(subject);
         }
+
+        public async Task BindTeacherSubject(Guid id1, Guid id2)
+        {
+            var teacherSubject = new TeacherSubject()
+            {
+                TeacherId = id1,
+                SubjectId = id2
+            };
+
+            await _subjectRepository.AddSubjectTeachers(teacherSubject);
+        }
     }
 }

@@ -13,5 +13,6 @@ namespace WirtualnyDziekanat.Application.Services
         Task CreateAsync(Guid id, string name, string desc);
         Task UpdateAsync(Guid id, string name, string desc);
         Task DeleteAsync(Guid id);
+        Task BindTeacherSubject(Guid id1, Guid id2);
     }
 }

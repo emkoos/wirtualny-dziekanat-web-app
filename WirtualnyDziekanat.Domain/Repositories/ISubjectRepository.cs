@@ -13,5 +13,6 @@ namespace WirtualnyDziekanat.Domain.Repositories
         Task AddAsync(Subject subject);
         Task UpdateAsync(Subject subject);
         Task DeleteAsync(Subject subject);
+        Task AddSubjectTeachers(TeacherSubject teacherSubject);
     }
 }

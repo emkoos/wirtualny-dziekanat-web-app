@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WirtualnyDziekanat.Application.Services;
+using WirtualnyDziekanat.Infrastructure.Commands.Teachers;
 
 namespace WirtualnyDziekanat.WebUI.Api
 {
@@ -41,7 +42,7 @@ namespace WirtualnyDziekanat.WebUI.Api
         public async Task<IActionResult> Post([FromBody] CreateTeacher command)
         {
             command.TeacherId = Guid.NewGuid();
-            await _teacherService.CreateAsync(command.TeacherId);
+            await _teacherService.CreateAsync(command.TeacherId, command.AcademicTitle, command.FirstName, command.LastName, command.Email, command.Phone);
 
             // Code 201
             return Created($"/teachers/{command.TeacherId}", null);
@@ -50,7 +51,7 @@ namespace WirtualnyDziekanat.WebUI.Api
         [HttpPut("{teacherId}")]
         public async Task<IActionResult> Put(Guid teacherId, [FromBody] UpdateTeacher command)
         {
-            await _teacherService.UpdateAsync(teacherId);
+            await _teacherService.UpdateAsync(teacherId, command.AcademicTitle, command.FirstName, command.LastName, command.Email, command.Phone);
 
             // Code 204
             return NoContent();

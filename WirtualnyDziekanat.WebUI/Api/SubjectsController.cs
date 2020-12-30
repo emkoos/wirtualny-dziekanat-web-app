@@ -48,6 +48,16 @@ namespace WirtualnyDziekanat.WebUI.Api
             return Created($"/subjects/{command.SubjectId}", null);
         }
 
+        [Route("/teacherSubject")]
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] CreateTeacherSubject command)
+        {
+            await _subjectService.BindTeacherSubject(command.TeacherId, command.SubjectId);
+
+            // Code 201
+            return Created($"Referenced Teacher:{command.TeacherId} and Subject: {command.SubjectId}", null);
+        }
+
         [HttpPut("{subjectId}")]
         public async Task<IActionResult> Put(Guid subjectId, [FromBody]UpdateSubject command)
         {
