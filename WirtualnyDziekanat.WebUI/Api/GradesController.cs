@@ -10,6 +10,6 @@ namespace WirtualnyDziekanat.WebUI.Api
     [Route("[controller]")]
     public class GradesController : Controller
     {
-
+        
     }
 }

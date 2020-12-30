@@ -24,22 +24,36 @@ namespace WirtualnyDziekanat.Infrastructure.Data
         {
             modelBuilder.Entity<TeacherSubject>()
                 .HasKey(ts => new { ts.TeacherId, ts.SubjectId });
+           
             modelBuilder.Entity<TeacherSubject>()
                 .HasOne(ts => ts.Teacher)
                 .WithMany(t => t.TeacherSubjects)
                 .HasForeignKey(ts => ts.TeacherId);
+           
             modelBuilder.Entity<TeacherSubject>()
                 .HasOne(ts => ts.Subject)
                 .WithMany(s => s.TeacherSubjects)
                 .HasForeignKey(ts => ts.SubjectId);
+            
             modelBuilder.Entity<Student>()
                 .HasMany(s => s.Grades)
                 .WithOne(g => g.Student)
                 .IsRequired();
+           
             modelBuilder.Entity<Subject>()
                 .HasMany(s => s.Grades)
                 .WithOne(g => g.Subject)
                 .IsRequired();
+            
+            modelBuilder.Entity<Grade>()
+                .HasOne(s => s.Student)
+                .WithMany(g => g.Grades)
+                .HasForeignKey(s => s.StudentId);
+            
+            modelBuilder.Entity<Grade>()
+                .HasOne(s => s.Subject)
+                .WithMany(g => g.Grades)
+                .HasForeignKey(s => s.SubjectId);
         }
     }
 }

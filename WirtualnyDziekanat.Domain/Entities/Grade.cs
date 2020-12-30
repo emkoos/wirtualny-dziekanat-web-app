@@ -8,7 +8,9 @@ namespace WirtualnyDziekanat.Domain.Entities
     public class Grade: Entity
     {
         public decimal Value { get; set; }
+        public Guid StudentId { get; set; }
         public Student Student { get; set; }
+        public Guid SubjectId { get; set; }
         public Subject Subject { get; set; }
     }
 }

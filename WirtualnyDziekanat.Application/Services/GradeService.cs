@@ -34,14 +34,14 @@ namespace WirtualnyDziekanat.Application.Services
             return _mapper.Map<IEnumerable<GradeDTO>>(grades);
         }
 
-        public async Task CreateAsync(Guid id, decimal value, Student student, Subject subject)
+        public async Task CreateAsync(Guid id, decimal value, Guid studentId, Guid subjectId)
         {
             var grade = new Grade()
             {
                 Id = id,
                 Value = value,
-                Student = student,
-                Subject = subject
+                StudentId = studentId,
+                SubjectId = subjectId
             };
 
             await _gradeRepository.AddAsync(grade);
