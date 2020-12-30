@@ -54,6 +54,8 @@ namespace WirtualnyDziekanat.WebUI
             services.AddScoped<IGradeService, GradeService>();
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<ISubjectRepository, SubjectRepository>();
+            services.AddScoped<ISubjectService, SubjectService>();
             services.AddScoped<ITeacherRepository, TeacherRepository>();
             services.AddScoped<ITeacherService, TeacherService>();
             services.AddSingleton(AutoMapperConfig.Initialize());
