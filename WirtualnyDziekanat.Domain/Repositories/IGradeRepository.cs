@@ -8,8 +8,8 @@ namespace WirtualnyDziekanat.Domain.Repositories
 {
     public interface IGradeRepository
     {
-        Task<Grade> GetGradeAsync(Guid id); // szczegóły 1 oceny /grades/{idGrade}  :przedmiot i nauczyciel
-        Task<IEnumerable<Grade>> BrowseStudentGradesAsync(Guid id); // wszystkie oceny danego studenta
+        Task<Grade> GetGradeAsync(Guid id); 
+        Task<IEnumerable<Grade>> BrowseStudentGradesAsync(Guid id); 
         Task AddAsync(Grade grade);
         Task UpdateAsync(Grade grade);
         Task DeleteAsync(Grade grade);  

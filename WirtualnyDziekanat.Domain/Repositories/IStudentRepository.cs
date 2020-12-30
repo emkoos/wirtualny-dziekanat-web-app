@@ -9,14 +9,14 @@ namespace WirtualnyDziekanat.Domain.Repositories
     public interface IStudentRepository
     {
         // One model data
-        Task<Student> GetStudentAsync(Guid id);   // dane 1 studenta
+        Task<Student> GetStudentAsync(Guid id);   
         Task<Student> GetStudentAsync(long pesel);
-        Task<IEnumerable<Student>> BrowseStudentsAsync(string lastName = ""); // lista wszystkich studentów
-        Task AddStudentAsync(Student student); // dodanie danych 1 studenta
-        Task UpdateStudentAsync(Student student); // edycja danych 1 studenta
-        Task DeleteStudentAsync(Student student); // usunięcie 1 studenta
+        Task<IEnumerable<Student>> BrowseStudentsAsync(string lastName = "");
+        Task AddStudentAsync(Student student); 
+        Task UpdateStudentAsync(Student student); 
+        Task DeleteStudentAsync(Student student); 
         // Models tree of data
-        Task<Student> GetStudentDetailsAsync(Guid id);  // Drzewko dla 1 studenta
-        Task<IEnumerable<Student>> BrowseStudentsDetailsAsync(); // Drzewko dla wszystkich studentów
+        Task<Student> GetStudentDetailsAsync(Guid id);  
+        Task<IEnumerable<Student>> BrowseStudentsDetailsAsync(); 
     }
 }
