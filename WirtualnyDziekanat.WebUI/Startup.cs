@@ -20,6 +20,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Identity;
+using WirtualnyDziekanat.Domain.Entities;
 
 namespace WirtualnyDziekanat.WebUI
 {
@@ -35,6 +37,13 @@ namespace WirtualnyDziekanat.WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<User, IdentityRole>(cfg =>
+            {
+                cfg.User.RequireUniqueEmail = true;
+            })
+            .AddEntityFrameworkStores<AppDbContext>();
+
+
             services.AddAuthentication()
                 .AddCookie()
                 .AddJwtBearer(cfg => 
@@ -61,7 +70,7 @@ namespace WirtualnyDziekanat.WebUI
                 .AddNewtonsoftJson(x => x.SerializerSettings.Formatting = Formatting.Indented);
 
 
-
+            services.AddTransient<DbSeeder>();
             services.AddScoped<IInformationRepository, InformationRepository>();
             services.AddScoped<IInformationService, InformationService>();
             services.AddScoped<IGradeRepository, GradeRepository>();
@@ -92,9 +101,10 @@ namespace WirtualnyDziekanat.WebUI
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();
-
             app.UseAuthentication();
+
+            app.UseRouting();
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
