@@ -33,6 +33,10 @@ namespace WirtualnyDziekanat.WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication()
+                .AddCookie()
+                .AddJwtBearer();
+
             services.AddDbContext<AppDbContext>(cfg =>
             {
                 cfg.UseSqlServer(Configuration.GetConnectionString("AppDbConnectionString"),
@@ -80,6 +84,7 @@ namespace WirtualnyDziekanat.WebUI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WirtualnyDziekanat.Infrastructure.Commands.Informations;
 using WirtualnyDziekanat.Infrastructure.Services;
@@ -9,6 +11,7 @@ using WirtualnyDziekanat.Infrastructure.Services;
 namespace WirtualnyDziekanat.WebUI.Api
 {
     [Route("[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class InformationsController : Controller
     {
         private readonly IInformationService _informationService;
