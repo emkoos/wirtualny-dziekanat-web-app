@@ -18,6 +18,8 @@ using WirtualnyDziekanat.Infrastructure.Repositories;
 using WirtualnyDziekanat.Infrastructure.Services;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace WirtualnyDziekanat.WebUI
 {
@@ -35,7 +37,15 @@ namespace WirtualnyDziekanat.WebUI
         {
             services.AddAuthentication()
                 .AddCookie()
-                .AddJwtBearer();
+                .AddJwtBearer(cfg => 
+                {
+                    cfg.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidIssuer = Configuration["Tokens:Issuer"],
+                        ValidAudience = Configuration["Tokens:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"]))
+                    };
+                });
 
             services.AddDbContext<AppDbContext>(cfg =>
             {

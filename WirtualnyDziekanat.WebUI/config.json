@@ -1,5 +1,10 @@
 {
   "ConnectionStrings": {
     "AppDbConnectionString": "server=(localdb)\\v11.0;Database=WirtualnyDziekanatDb;Integrated Security=true;MultipleActiveResultSets=true;"
+  },
+  "Tokens": {
+    "Key": "b;sgfdsg;dffddfd;fdfdf;fddfd",
+    "Issuer": "http://localhost:5000",
+    "Audience": "users"
   }
 }
