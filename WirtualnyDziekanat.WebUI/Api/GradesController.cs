@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WirtualnyDziekanat.Application.Services;
 using WirtualnyDziekanat.Infrastructure.Commands.Grades;
@@ -9,6 +11,7 @@ using WirtualnyDziekanat.Infrastructure.Commands.Grades;
 namespace WirtualnyDziekanat.WebUI.Api
 {
     [Route("[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class GradesController : Controller
     {
         private readonly IGradeService _gradeService;
