@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WirtualnyDziekanat.Domain.Entities;
 using WirtualnyDziekanat.Infrastructure.Commands.Users;
+using WirtualnyDziekanat.WebUI.ViewModels;
 
 namespace WirtualnyDziekanat.WebUI.Api
 {
@@ -28,16 +29,6 @@ namespace WirtualnyDziekanat.WebUI.Api
             _userManager = userManager;
             _logger = logger;
             _config = config;
-        }
-
-        public async Task<IActionResult> Login()
-        {
-            if (this.User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-           
-            return View();
         }
 
         [HttpPost]

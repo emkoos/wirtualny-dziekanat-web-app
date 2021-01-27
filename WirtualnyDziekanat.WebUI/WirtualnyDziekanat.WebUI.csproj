@@ -292,8 +292,4 @@
     <ProjectReference Include="..\WirtualnyDziekanat.Application\WirtualnyDziekanat.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-
 </Project>
