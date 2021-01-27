@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -18,13 +19,25 @@ namespace WirtualnyDziekanat.WebUI.Api
     {
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
+        private readonly ILogger<AccountController> _logger;
         private readonly IConfiguration _config;
 
-        public AccountController(SignInManager<User> signInManager, UserManager<User> userManager, IConfiguration config)
+        public AccountController(SignInManager<User> signInManager, UserManager<User> userManager, ILogger<AccountController> logger, IConfiguration config)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _logger = logger;
             _config = config;
+        }
+
+        public async Task<IActionResult> Login()
+        {
+            if (this.User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
+            return View();
         }
 
         [HttpPost]

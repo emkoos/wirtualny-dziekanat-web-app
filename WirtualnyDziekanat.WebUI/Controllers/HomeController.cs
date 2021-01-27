@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using WirtualnyDziekanat.Infrastructure.Services;
 using WirtualnyDziekanat.WebUI.Models;
 
 namespace WirtualnyDziekanat.WebUI.Controllers
@@ -12,15 +13,19 @@ namespace WirtualnyDziekanat.WebUI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IInformationService _informationService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IInformationService informationService)
         {
             _logger = logger;
+            _informationService = informationService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string name)
         {
-            return View();
+            var informations = await _informationService.BrowseAsync(name);
+
+            return View(informations);
         }
 
         public IActionResult Privacy()
