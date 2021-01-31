@@ -1,0 +1,18 @@
+﻿@model IEnumerable<StudentDTO>
+@{
+    ViewData["Title"] = "Dane studenta";
+}
+
+@foreach (var x in Model)
+{
+    <span>@x.FirstName</span>
+    <span>@x.LastName</span>
+    <span>@x.Gender</span>
+    <span>@x.Pesel</span>
+    <br />
+    <span>@x.BirthdayDate</span>
+    <br />
+    <span>@x.AlbumNr</span>
+    <span>@x.Address</span>
+    <span>@x.Email</span>
+}

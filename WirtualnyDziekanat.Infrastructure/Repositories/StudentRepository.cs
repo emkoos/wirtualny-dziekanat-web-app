@@ -49,13 +49,14 @@ namespace WirtualnyDziekanat.Infrastructure.Repositories
             return await Task.FromResult(students);
         }
 
-        public async Task<IEnumerable<Student>> BrowseStudentsDetailsAsync()
+        public async Task<IEnumerable<Student>> BrowseStudentsDetailsAsync(string username = "")
         {
             var students = _context.Students
                 .Include(s => s.Grades)
                     .ThenInclude(g => g.Subject)
                         .ThenInclude(n => n.TeacherSubjects)
                             .ThenInclude(s => s.Teacher)
+                .Where(x => x.Email == username)
                 .AsEnumerable();
 
             return await Task.FromResult(students);

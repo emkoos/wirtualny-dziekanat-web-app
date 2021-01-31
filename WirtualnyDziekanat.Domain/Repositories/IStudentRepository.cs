@@ -17,6 +17,6 @@ namespace WirtualnyDziekanat.Domain.Repositories
         Task DeleteStudentAsync(Student student); 
         // Models tree of data
         Task<Student> GetStudentDetailsAsync(Guid id);  
-        Task<IEnumerable<Student>> BrowseStudentsDetailsAsync(); 
+        Task<IEnumerable<Student>> BrowseStudentsDetailsAsync(string username = ""); 
     }
 }

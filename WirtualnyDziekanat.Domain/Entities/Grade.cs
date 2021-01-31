@@ -7,6 +7,7 @@ namespace WirtualnyDziekanat.Domain.Entities
 {
     public class Grade: Entity
     {
+        // Add AddedDate
         public decimal Value { get; set; }
         public Guid StudentId { get; set; }
         public Student Student { get; set; }
