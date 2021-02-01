@@ -14,6 +14,7 @@ namespace WirtualnyDziekanat.WebUI.Controllers
     {
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<AccountController> _logger;
+        private readonly UserManager<User> _userManager;
 
         public AccountController(SignInManager<User> signInManager,  ILogger<AccountController> logger)
         {

@@ -9,7 +9,7 @@ using WirtualnyDziekanat.Application.Services;
 
 namespace WirtualnyDziekanat.WebUI.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Student")]
     public class StudentController : Controller
     {
         private readonly ILogger<StudentController> _logger;
@@ -32,14 +32,14 @@ namespace WirtualnyDziekanat.WebUI.Controllers
 
         public async Task<IActionResult> Grades()
         {
-            var grades = await _studentService.BrowseStudentsDetailsAsync(User.Identity.Name);
+            var grades = await _studentService.GetStudentDetailsAsync(User.Identity.Name);
 
             return View(grades);
         }
 
         public async Task<IActionResult> Data()
         {
-            var studentData = await _studentService.BrowseStudentsDetailsAsync(User.Identity.Name);
+            var studentData = await _studentService.GetStudentDetailsAsync(User.Identity.Name);
             
             return View(studentData);
         }

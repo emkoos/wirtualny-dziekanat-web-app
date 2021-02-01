@@ -1,40 +1,44 @@
-﻿@model IEnumerable<StudentDTO>
+﻿@model StudentDTO
 @{
     ViewData["Title"] = "Oceny";
 }
 
 <h1>Moje oceny</h1>
 <div class="well">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Przedmiot</th>
-                <th>Oceny</th>
-                <th>Prowadzący</th>
-                <th style="width: 36px;"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var x in Model)
-            {
-                @foreach (var s in x.Grades)
-                {
-            <tr>
-                <td>
-                    @s.Subject.Name
-                </td>
-                <td>
-                    @s.Value
-                </td>
-                <td>
-                    @foreach (var t in s.Subject.TeacherSubjects)
+    @if (Model == null)
+    {
+        <span>Brak ocen</span>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Przedmiot</th>
+                    <th>Oceny</th>
+                    <th>Prowadzący</th>
+                    <th style="width: 36px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                    @foreach (var s in Model.Grades)
                     {
-                        @(t.Teacher.AcademicTitle + " " + t.Teacher.FirstName + " " + t.Teacher.LastName) <br />
-                    }
-                </td>
-            </tr>
-                }
-            }
-            </tbody>
-    </table>
+                    <tr>
+                        <td>
+                            @s.Subject.Name
+                        </td>
+                        <td>
+                            @s.Value
+                        </td>
+                        <td>
+                            @foreach (var t in s.Subject.TeacherSubjects)
+                            {
+                                @(t.Teacher.AcademicTitle + " " + t.Teacher.FirstName + " " + t.Teacher.LastName) <br />
+                            }
+                        </td>
+                    </tr>
+                    }          
+                </tbody>
+        </table>
+    }
 </div>

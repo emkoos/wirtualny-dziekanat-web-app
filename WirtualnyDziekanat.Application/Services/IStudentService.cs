@@ -17,6 +17,7 @@ namespace WirtualnyDziekanat.Application.Services
         Task DeleteStudentAsync(Guid id);
         // Models tree of data
         Task<StudentDTO> GetStudentDetailsAsync(Guid id);
-        Task<IEnumerable<StudentDTO>> BrowseStudentsDetailsAsync(string username = null);
+        Task<StudentDTO> GetStudentDetailsAsync(string username);
+        Task<IEnumerable<StudentDTO>> BrowseStudentsDetailsAsync();
     }
 }

@@ -1,18 +1,52 @@
-﻿@model IEnumerable<StudentDTO>
+﻿@model StudentDTO
 @{
     ViewData["Title"] = "Dane studenta";
 }
 
-@foreach (var x in Model)
-{
-    <span>@x.FirstName</span>
-    <span>@x.LastName</span>
-    <span>@x.Gender</span>
-    <span>@x.Pesel</span>
-    <br />
-    <span>@x.BirthdayDate</span>
-    <br />
-    <span>@x.AlbumNr</span>
-    <span>@x.Address</span>
-    <span>@x.Email</span>
-}
+<div class="col-md-6 offset-md-3">
+    <div class="card card-body bg-light">
+        <div class="form-group">
+            <label>Imię: </label>
+            <span>@Model.FirstName</span>
+        </div>
+
+        <!--To Do student photo-->
+        
+        <div class="form-group">
+            <label>Nazwisko: </label>
+            <span> </span>
+        </div>
+        <div class="form-group">
+            <label>Your Name:</label>
+            <span>@Model.LastName</span>
+        </div>
+        <div class="form-group">
+            <label>Płeć:</label>
+            <span>@Model.Gender</span>
+        </div>
+        <div class="form-group">
+            <label>Płeć: </label>
+            <span>@Model.Gender</span>
+        </div>
+        <div class="form-group">
+            <label>Pesel: </label>
+            <span>@Model.Pesel</span>
+        </div>
+        <div class="form-group">
+            <label>Data urodzenia: </label>
+            <span>@Model.BirthdayDate</span>
+        </div>
+        <div class="form-group">
+            <label>Numer albumu: </label>
+            <span>@Model.AlbumNr</span>
+        </div>
+        <div class="form-group">
+            <label>Adres zamieszkania: </label>
+            <span>@Model.Address</span>
+        </div>
+        <div class="form-group">
+            <label>Email: </label>
+            <span>@Model.Email</span>
+        </div>
+    </div>
+</div>

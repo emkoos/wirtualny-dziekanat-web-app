@@ -34,6 +34,13 @@ namespace WirtualnyDziekanat.Application.Services
             return _mapper.Map<StudentDTO>(studentInfo);
         }
 
+        public async Task<StudentDTO> GetStudentDetailsAsync(string username)
+        {
+            var studentInfo = await _studentRepository.GetStudentDetailsAsync(username);
+
+            return _mapper.Map<StudentDTO>(studentInfo);
+        }
+
         public async Task<IEnumerable<StudentDTO>> BrowseStudentsAsync(string lastName = null)
         {
             var students = await _studentRepository.BrowseStudentsAsync(lastName);
@@ -41,9 +48,9 @@ namespace WirtualnyDziekanat.Application.Services
             return _mapper.Map<IEnumerable<StudentDTO>>(students);
         }
 
-        public async Task<IEnumerable<StudentDTO>> BrowseStudentsDetailsAsync(string username = null)
+        public async Task<IEnumerable<StudentDTO>> BrowseStudentsDetailsAsync()
         {
-            var studentsInfo = await _studentRepository.BrowseStudentsDetailsAsync(username);
+            var studentsInfo = await _studentRepository.BrowseStudentsDetailsAsync();
 
             return _mapper.Map<IEnumerable<StudentDTO>>(studentsInfo);
         }

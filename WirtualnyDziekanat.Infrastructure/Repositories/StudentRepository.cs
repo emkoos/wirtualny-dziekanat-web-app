@@ -37,6 +37,18 @@ namespace WirtualnyDziekanat.Infrastructure.Repositories
 
             return await Task.FromResult(student);
         }
+        public async Task<Student> GetStudentDetailsAsync(string username)
+        {
+            var student = _context.Students
+                .Include(s => s.Grades)
+                    .ThenInclude(g => g.Subject)
+                        .ThenInclude(n => n.TeacherSubjects)
+                            .ThenInclude(s => s.Teacher)
+                .SingleOrDefault(x => x.Email == username);
+
+            return await Task.FromResult(student);
+
+        }
 
         public async Task<IEnumerable<Student>> BrowseStudentsAsync(string lastName = "")
         {
@@ -49,14 +61,13 @@ namespace WirtualnyDziekanat.Infrastructure.Repositories
             return await Task.FromResult(students);
         }
 
-        public async Task<IEnumerable<Student>> BrowseStudentsDetailsAsync(string username = "")
+        public async Task<IEnumerable<Student>> BrowseStudentsDetailsAsync()
         {
             var students = _context.Students
                 .Include(s => s.Grades)
                     .ThenInclude(g => g.Subject)
                         .ThenInclude(n => n.TeacherSubjects)
                             .ThenInclude(s => s.Teacher)
-                .Where(x => x.Email == username)
                 .AsEnumerable();
 
             return await Task.FromResult(students);
