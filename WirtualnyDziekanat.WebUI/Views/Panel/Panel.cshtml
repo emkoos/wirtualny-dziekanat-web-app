@@ -1,7 +1,19 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Panel pracownila";
 }
 
-<h1>Panel pracownika</h1>
+<h1>Zarządzaj</h1>
+<div>
+    <div class="form-group">
+        <input type="button" value="Wyswietl studentów" onclick="location.href='@Url.Action("Students", "Panel")'" />
+    </div>
+    <div class="form-group">
+        <input type="button" value="Wyswietl profesorów" onclick="location.href='@Url.Action("Teachers", "Panel")'" />
+    </div>
+    <div class="form-group">
+        <input type="button" value="Wyswietl przedmioty" onclick="location.href='@Url.Action("Subjects", "Panel")'" />
+    </div>
+    <div class="form-group">
+        <input type="button" value="Utwórz konto pracownika" onclick="location.href='@Url.Action("Create", "Account")'" />
+    </div>
+</div>

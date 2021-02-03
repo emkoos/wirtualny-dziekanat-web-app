@@ -42,11 +42,13 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Zaloguj</a>
                             </li>
                         }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Panel" asp-action="Panel">Panel pracownika</a>
-                        </li>
-
-                    </ul>
+                        @if (User.IsInRole("Worker"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Panel" asp-action="Panel">Zarządzaj</a>
+                            </li>
+                        }
+                        </ul>
                 </div>
             </div>
         </nav>

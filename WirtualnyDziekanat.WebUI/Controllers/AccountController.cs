@@ -44,11 +44,11 @@ namespace WirtualnyDziekanat.WebUI.Controllers
                 {
                     if (Request.Query.Keys.Contains("ReturnUrl"))
                     {
-                        Redirect(Request.Query["ReturnUrl"].First());
+                        return Redirect(Request.Query["ReturnUrl"].First());
                     }
                     else
                     {
-                        RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Home");
                     }
                 }
             }
@@ -63,6 +63,18 @@ namespace WirtualnyDziekanat.WebUI.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(WorkerVM model)
+        {
+            return View();
         }
     }
 }

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<TeacherDTO>
+@{
+    ViewData["Title"] = "Lista prowadzących";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="well">
+    <div class="form-group">
+        <input type="button" value="Dodaj prowadzącego" onclick="location.href='@Url.Action("CreateTeacher", "Panel")'" />
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tytuł</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Email</th>
+                <th>Telefon</th>
+                <th style="width: 36px;">Opcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var t in Model)
+            {
+            <tr>
+                <td>@t.AcademicTitle</td>
+                <td>@t.FirstName</td>
+                <td>@t.LastName</td>
+                <td>@t.Email</td>
+                <td>@t.Phone</td>
+                <td>
+                    <a href="user.html"><i class="icon-pencil"></i></a>
+                    <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
