@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WirtualnyDziekanat.Domain.Entities;
+using WirtualnyDziekanat.Infrastructure.Data;
 using WirtualnyDziekanat.WebUI.ViewModels;
 
 namespace WirtualnyDziekanat.WebUI.Controllers
@@ -16,10 +17,11 @@ namespace WirtualnyDziekanat.WebUI.Controllers
         private readonly ILogger<AccountController> _logger;
         private readonly UserManager<User> _userManager;
 
-        public AccountController(SignInManager<User> signInManager,  ILogger<AccountController> logger)
+        public AccountController(SignInManager<User> signInManager,  ILogger<AccountController> logger, UserManager<User> userManager, AppDbContext context)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -74,6 +76,31 @@ namespace WirtualnyDziekanat.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(WorkerVM model)
         {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByNameAsync(model.Username);
+
+                if (user == null)
+                {
+                    user = new User()
+                    {
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Email = model.Username,
+                        UserName = model.Username
+                    };
+
+                    var result = await _userManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        _userManager.AddToRoleAsync(user, "Worker").Wait();
+                    }
+                }
+                return RedirectToAction("Panel", "Panel");
+            }
+            
+            ModelState.AddModelError("", "Błąd rejestracji");
+
             return View();
         }
     }
