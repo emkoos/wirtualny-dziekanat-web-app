@@ -1,5 +1,5 @@
-# Synergie-Card-Store
-> Internetowy sklep z kartami i książkami stworzony w technologii ASP.NET MVC dla firmy Synergie Polska Sp. z o.o.
+# Wirtualny dziekanat
+> Aplikacja internetowa w stylu wirtualnego dziekanatu dla studentów i prowadzących.
 
 ## Table of contents
 * [Ogólne informacje](#ogólne-informacje)
@@ -9,31 +9,28 @@
 * [Kontakt](#kontakt)
 
 ## Ogólne informacje
-Celem niniejszego projektu była zarówno nauka nowych technologii jak i również zbudowanie produktu do użytku codziennego dla firmy Synergie Polska.
-Wykonywanie niniejszego projektu pomogło mi w podszlifowaniu dotychczasowej wiedzy a także zrozumieniu nowych aspektów oraz nowych technologii.
-Projekt jednak nie został jeszcze wdrożony.
+Projekt miał na celu naukę oraz podnoszenie umiejętności w tworzeniu aplikacji w technologii ASP.NET Core. Wykonując projekt zrozumiałem wiele aspektów tworzenia aplikacji internetowych począwszy od dobrania odpowiedniej architektury, poprzez zaprojektowanie i stworzenie odpowiedniej bazy danych aż do procesu kodowania odpowiednich zdarzeń. Projekt wykorzystuje także interfejs REST API pomagający wymieniać dane przez zautoryzoowanego użytkownika.
 
 ## Użyte technologie
-* ASP.Net MVC
+* ASP.Net Core 3.1
+* REST API
+* MVC
 * Entity Framework
+* Migracje EF
+* LINQ
 * HTML
 * CSS
-* Javascript, Ajax
-* NLog
-* Elmah
-* LINQ
+* AutoMapper
+* Identity ASP.NET Core, Jwt Bearer
 
 ## Do zrobienia
 Lista elementów pozostałych do ukończenia i stworzenia:
-* Moduł płatności PayPal
-* Moduł płatności PayU
-* Wybór dostawcy i płatności w koszyku
-* Poprawki wizualne
-* Poprawki bezpieczeństwa
+* Ukończenie podstron dla pracownika
+* Poprawa wizualna widoków
 * Testy aplikacji
 
 ## Status
-Projekt nie będzie w najbliższym czasie kontynuowany. Ukończenie możliwe niebawem.
+Projekt wciąż rozwijany. Przewidywane ukończenie niebawem.
 
 ## Kontakt
 Created by [@emkoos](https://github.com/emkoos/) - Skontaktuj się ze mną!
