@@ -11,7 +11,7 @@
 ## Ogólne informacje
 Projekt miał na celu naukę oraz podnoszenie umiejętności w tworzeniu aplikacji w technologii ASP.NET Core. Wykonując projekt zrozumiałem wiele aspektów tworzenia aplikacji internetowych począwszy od dobrania odpowiedniej architektury, poprzez zaprojektowanie i stworzenie odpowiedniej bazy danych aż do procesu kodowania odpowiednich zdarzeń. Projekt wykorzystuje także interfejs REST API pomagający wymieniać dane przez zautoryzoowanego użytkownika.
 
-## Użyte technologie
+## Użyte technologie i architektury
 * ASP.Net Core 3.1
 * REST API
 * MVC
@@ -22,6 +22,8 @@ Projekt miał na celu naukę oraz podnoszenie umiejętności w tworzeniu aplikac
 * CSS
 * AutoMapper
 * Identity ASP.NET Core, Jwt Bearer
+
+* Onion Architecture
 
 ## Do zrobienia
 Lista elementów pozostałych do ukończenia i stworzenia:
