@@ -10,6 +10,7 @@ using WirtualnyDziekanat.Infrastructure.Services;
 
 namespace WirtualnyDziekanat.WebUI.Api
 {
+    [ResponseCache(Duration = 60, Location = ResponseCacheLocation.None)]
     [Route("[controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class InformationsController : Controller
