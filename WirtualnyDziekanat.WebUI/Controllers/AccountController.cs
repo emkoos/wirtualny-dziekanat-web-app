@@ -13,12 +13,14 @@ namespace WirtualnyDziekanat.WebUI.Controllers
 {
     public partial class AccountController : Controller
     {
+        private readonly AppDbContext _context;
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<AccountController> _logger;
         private readonly UserManager<User> _userManager;
 
-        public AccountController(SignInManager<User> signInManager,  ILogger<AccountController> logger, UserManager<User> userManager, AppDbContext context)
+        public AccountController(AppDbContext context, SignInManager<User> signInManager,  ILogger<AccountController> logger, UserManager<User> userManager)
         {
+            _context = context;
             _signInManager = signInManager;
             _logger = logger;
             _userManager = userManager;
@@ -93,10 +95,13 @@ namespace WirtualnyDziekanat.WebUI.Controllers
                     var result = await _userManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
-                        _userManager.AddToRoleAsync(user, "Worker").Wait();
+                        await _userManager.AddToRoleAsync(user, "Worker");
+                        TempData["message_success"] = "Poprawnie utworzono użytkownika";
+                        return RedirectToAction("Panel", "Panel");
                     }
+                    TempData["message_fail"] = "Błąd w tworzeniu użytkownika";
+                    return View();
                 }
-                return RedirectToAction("Panel", "Panel");
             }
             
             ModelState.AddModelError("", "Błąd rejestracji");

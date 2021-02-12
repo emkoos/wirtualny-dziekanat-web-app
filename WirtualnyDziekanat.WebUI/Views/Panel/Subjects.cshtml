@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<SubjectDTO>
 @{
     ViewData["Title"] = "Lista przedmiotów";
+    <link href="~/node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -24,8 +25,7 @@
                     <td>@s.Name</td>
                     <td>@s.Opis</td>
                     <td>
-                        <a href="user.html"><i class="icon-pencil"></i></a>
-                        <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
+                        <i class="bi bi-trash"></i>
                     </td>
                 </tr>
             }
