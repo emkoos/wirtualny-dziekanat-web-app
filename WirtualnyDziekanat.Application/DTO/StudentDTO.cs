@@ -15,6 +15,8 @@ namespace WirtualnyDziekanat.Application.DTO
         public string Gender { get; set; }
         public string AlbumNr { get; set; }
         public long Pesel { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime BirthdayDate { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }

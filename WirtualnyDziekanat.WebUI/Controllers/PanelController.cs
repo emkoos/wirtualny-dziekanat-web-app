@@ -87,6 +87,51 @@ namespace WirtualnyDziekanat.WebUI.Controllers
             return View();
         }
 
+        [HttpGet]
+        [Route("/Panel/EditStudent/{id}")]
+        public async Task<IActionResult> EditStudent(Guid id)
+        {
+            var student = await _studentService.GetStudentAsync(id);
+
+            return View(student);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditStudent(StudentDTO model)
+        {
+            if (ModelState.IsValid)
+            {
+                await _studentService.UpdateStudentAsync(model.ID, model.FirstName, model.LastName, model.Gender, model.AlbumNr, model.Email, model.Address);
+
+                TempData["message"] = "Zaktualizowano studenta";
+                return RedirectToAction("Panel");
+            }
+
+            TempData["message_fail"] = "Coś poszło nie tak...";
+            return View();
+        }
+       
+        [Route("/Panel/DeleteStudent/{id}")]
+        public async Task<IActionResult> DeleteStudent(Guid id)
+        {
+            var student = await _studentService.GetStudentAsync(id);
+            await _studentService.DeleteStudentAsync(id);
+
+            // Delete user
+            var user = await _userManager.FindByNameAsync(student.Email);
+            var result = await _userManager.DeleteAsync(user);
+            if (result.Succeeded)
+            {
+                await _userManager.RemoveFromRoleAsync(user, "Student");
+                TempData["message"] = "Usunięto studenta z grupy Student";
+                return RedirectToAction("Panel");
+            }
+
+            TempData["message_fail"] = "Coś poszło nie tak...";
+            return View();
+        }
+
+
         //TEACHERS:
         public async Task<IActionResult> Teachers()
         {
@@ -137,7 +182,7 @@ namespace WirtualnyDziekanat.WebUI.Controllers
                 return RedirectToAction("Panel");
             }
 
-            TempData["updated_fail"] = "Coś poszło nie tak...";
+            TempData["message_fail"] = "Coś poszło nie tak...";
             return View();
         }
 
@@ -200,7 +245,7 @@ namespace WirtualnyDziekanat.WebUI.Controllers
                 return RedirectToAction("Panel");
             }
 
-            TempData["updated_fail"] = "Coś poszło nie tak...";
+            TempData["message_fail"] = "Coś poszło nie tak...";
             return View();
         }
 

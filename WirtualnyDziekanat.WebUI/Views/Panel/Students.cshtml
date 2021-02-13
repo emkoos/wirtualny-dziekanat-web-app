@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<StudentDTO>
 @{
     ViewData["Title"] = "Lista studentów";
+    <link href="~/node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -28,8 +29,8 @@
                     <td>@s.AlbumNr</td>
                     <td>@s.Email</td>
                     <td>
-                        <a href="user.html"><i class="icon-pencil"></i></a>
-                        <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
+                        <a class="nav-link text-dark" asp-controller="Panel" asp-action="EditStudent" asp-route-id="@s.ID"><i class="bi bi-pencil-square"></i></a>
+                        <a onclick="return confirm('Czy jesteś pewien usunięcia studenta?')" class="nav-link text-dark" asp-controller="Panel" asp-action="DeleteStudent" asp-route-id="@s.ID"><i class="bi bi-trash"></i></a>
                     </td>
                 </tr>
             }
