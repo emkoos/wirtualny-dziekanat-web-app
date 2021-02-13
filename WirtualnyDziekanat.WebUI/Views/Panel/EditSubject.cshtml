@@ -3,17 +3,36 @@
     ViewData["Title"] = "Szczegóły przedmiotu";
 }
 
-<div class="well">
-    <div class="alert-danger">@TempData["updated_fail"]</div>
-    <form method="post">
-        <div>
-            <label asp-for="Name">Przedmiot:</label>
-            <input asp-for="Name" value="@Model.Name" />
-        </div>
-        <div>
-            <label asp-for="Opis">Opis:</label>
-            <input asp-for="Opis" value="@Model.Opis" />
-        </div>
-        <input type="submit" value="Zapisz zmiany" class="btn btn-success" />
-    </form>
+<div class="row">
+    <div class="form-group">@TempData["message_fail"]</div>
+    <div class="col-md-6 offset-md-3">
+        <form method="post">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Name">Nazwa</label>
+                        <input asp-for="Name" class="form-control" placeholder="@Model.Name" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Opis">Opis</label>
+                        <textarea asp-for="Opis" class="form-control" placeholder="@Model.Opis"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Prowadzący</label>
+                <span>
+                    @foreach (var p in Model.TeacherSubjects)
+                    {
+                        @(p.Teacher.AcademicTitle + " " + p.Teacher.FirstName + " " + p.Teacher.LastName)<br />
+                    }
+                </span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Zaktualizuj" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
 </div>
