@@ -1,0 +1,19 @@
+﻿@model SubjectDTO
+@{
+    ViewData["Title"] = "Szczegóły przedmiotu";
+}
+
+<div class="well">
+    <div class="alert-danger">@TempData["updated_fail"]</div>
+    <form method="post">
+        <div>
+            <label asp-for="Name">Przedmiot:</label>
+            <input asp-for="Name" value="@Model.Name" />
+        </div>
+        <div>
+            <label asp-for="Opis">Opis:</label>
+            <input asp-for="Opis" value="@Model.Opis" />
+        </div>
+        <input type="submit" value="Zapisz zmiany" class="btn btn-success" />
+    </form>
+</div>

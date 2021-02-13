@@ -15,7 +15,7 @@
             <tr>
                 <th>Nazwa</th>
                 <th>Opis</th>
-                <th style="width: 36px;">Opcje</th>
+                <th>Opcje</th>
             </tr>
         </thead>
         <tbody>
@@ -25,7 +25,8 @@
                     <td>@s.Name</td>
                     <td>@s.Opis</td>
                     <td>
-                        <i class="bi bi-trash"></i>
+                        <a class="nav-link text-dark" asp-controller="Panel" asp-action="EditSubject" asp-route-id="@s.ID"><i class="bi bi-pencil-square"></i></a>
+                        <a onclick="return confirm('Czy jesteś pewien usunięcia przedmiotu?')" class="nav-link text-dark" asp-controller="Panel" asp-action="DeleteSubject" asp-route-id="@s.ID"><i class="bi bi-trash"></i></a>
                     </td>
                 </tr>
             }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WirtualnyDziekanat.Application.DTO;
 using WirtualnyDziekanat.Application.Services;
 
 namespace WirtualnyDziekanat.WebUI.Controllers
@@ -42,6 +43,60 @@ namespace WirtualnyDziekanat.WebUI.Controllers
             var subjects = await _subjectService.BrowseAsync();
 
             return View(subjects);
+        }
+
+        [HttpGet]
+        [Route("/Panel/EditSubject/{id}")]
+        public async Task<IActionResult> EditSubject(Guid id)
+        {
+            var subject = await _subjectService.GetAsync(id);
+
+            return View(subject);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CreateSubject()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateSubject(SubjectDTO model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.ID = Guid.NewGuid();
+                await _subjectService.CreateAsync(model.ID, model.Name, model.Opis);
+
+                TempData["message_success"] = "Dodano nowy przedmiot";
+                return RedirectToAction("Panel");
+            }
+
+            TempData["message_fail"] = "Coś poszło nie tak";
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditSubject(SubjectDTO model)
+        {
+            if (ModelState.IsValid)
+            {
+                await _subjectService.UpdateAsync(model.ID, model.Name, model.Opis);
+
+                TempData["message_success"] = "Zaktualizowano przedmiot";
+                return RedirectToAction("Panel");
+            }
+
+            TempData["updated_fail"] = "Coś poszło nie tak";
+            return View();
+        }
+
+        [Route("/Panel/DeleteSubject/{id}")]
+        public async Task<IActionResult> DeleteSubject(Guid id)
+        {
+            await _subjectService.DeleteAsync(id);
+
+            return RedirectToAction("Panel", "Panel");
         }
 
         public async Task<IActionResult> Teachers()
