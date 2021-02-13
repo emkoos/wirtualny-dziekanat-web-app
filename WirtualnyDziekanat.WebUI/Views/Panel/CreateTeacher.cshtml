@@ -1,0 +1,51 @@
+﻿@model TeacherDTO
+@{
+    ViewBag.Title = "Tworzenie prowadzącego";
+}
+
+<h1>@ViewBag.Tile</h1>
+
+<div class="row">
+    <div class="form-group">@TempData["message_fail"]</div>
+    <div class="col-md-6 offset-md-3">
+        <form method="post">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="AcademicTitle">Tytuł naukowy</label>
+                    <input asp-for="AcademicTitle" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="FirstName">Imię</label>
+                        <input asp-for="FirstName" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="LastName">Nazwisko</label>
+                        <input asp-for="LastName" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Email">Email</label>
+                        <input asp-for="Email" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Phone">Telefon</label>
+                        <input asp-for="Phone" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Utwórz" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>

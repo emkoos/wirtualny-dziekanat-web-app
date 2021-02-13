@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<TeacherDTO>
 @{
     ViewData["Title"] = "Lista prowadzących";
+    <link href="~/node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -17,23 +18,23 @@
                 <th>Nazwisko</th>
                 <th>Email</th>
                 <th>Telefon</th>
-                <th style="width: 36px;">Opcje</th>
+                <th>Opcje</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var t in Model)
             {
-            <tr>
-                <td>@t.AcademicTitle</td>
-                <td>@t.FirstName</td>
-                <td>@t.LastName</td>
-                <td>@t.Email</td>
-                <td>@t.Phone</td>
-                <td>
-                    <a href="user.html"><i class="icon-pencil"></i></a>
-                    <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-                </td>
-            </tr>
+                <tr>
+                    <td>@t.AcademicTitle</td>
+                    <td>@t.FirstName</td>
+                    <td>@t.LastName</td>
+                    <td>@t.Email</td>
+                    <td>@t.Phone</td>
+                    <td>
+                        <a class="nav-link text-dark" asp-controller="Panel" asp-action="EditTeacher" asp-route-id="@t.ID"><i class="bi bi-pencil-square"></i></a>
+                        <a onclick="return confirm('Czy jesteś pewien usunięcia prowadzącego?')" class="nav-link text-dark" asp-controller="Panel" asp-action="DeleteTeacher" asp-route-id="@t.ID"><i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>

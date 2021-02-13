@@ -38,20 +38,13 @@ namespace WirtualnyDziekanat.WebUI.Controllers
             return View(students);
         }
 
+
+        // SUBJECTS:
         public async Task<IActionResult> Subjects()
         {
             var subjects = await _subjectService.BrowseAsync();
 
             return View(subjects);
-        }
-
-        [HttpGet]
-        [Route("/Panel/EditSubject/{id}")]
-        public async Task<IActionResult> EditSubject(Guid id)
-        {
-            var subject = await _subjectService.GetAsync(id);
-
-            return View(subject);
         }
 
         [HttpGet]
@@ -72,8 +65,17 @@ namespace WirtualnyDziekanat.WebUI.Controllers
                 return RedirectToAction("Panel");
             }
 
-            TempData["message_fail"] = "Coś poszło nie tak";
+            TempData["message_fail"] = "Coś poszło nie tak...";
             return View();
+        }
+
+        [HttpGet]
+        [Route("/Panel/EditSubject/{id}")]
+        public async Task<IActionResult> EditSubject(Guid id)
+        {
+            var subject = await _subjectService.GetAsync(id);
+
+            return View(subject);
         }
 
         [HttpPost]
@@ -87,7 +89,7 @@ namespace WirtualnyDziekanat.WebUI.Controllers
                 return RedirectToAction("Panel");
             }
 
-            TempData["updated_fail"] = "Coś poszło nie tak";
+            TempData["updated_fail"] = "Coś poszło nie tak...";
             return View();
         }
 
@@ -96,14 +98,71 @@ namespace WirtualnyDziekanat.WebUI.Controllers
         {
             await _subjectService.DeleteAsync(id);
 
+            TempData["message_success"] = "Usunięto prowadzącego";
             return RedirectToAction("Panel", "Panel");
         }
 
+        //TEACHERS:
         public async Task<IActionResult> Teachers()
         {
             var teachers = await _teacherService.BrowseAsync();
 
             return View(teachers);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CreateTeacher()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateTeacher(TeacherDTO model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.ID = Guid.NewGuid();
+                await _teacherService.CreateAsync(model.ID, model.AcademicTitle, model.FirstName, model.LastName, model.Email, model.Phone);
+
+                TempData["message_success"] = "Dodano nowego prowadzącego";
+                return RedirectToAction("Panel");
+            }
+
+            TempData["message_fail"] = "Coś poszło nie tak...";
+            return View();
+        }
+
+        [HttpGet]
+        [Route("/Panel/EditTeacher/{id}")]
+        public async Task<IActionResult> EditTeacher(Guid id)
+        {
+            var teacher = await _teacherService.GetAsync(id);
+
+            return View(teacher);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditTeacher(TeacherDTO model)
+        {
+            if (ModelState.IsValid)
+            {
+                await _teacherService.UpdateAsync(model.ID, model.AcademicTitle, model.FirstName, model.LastName, model.Email, model.Phone);
+
+                TempData["message_success"] = "Zaktualizowano prowadzącego";
+                return RedirectToAction("Panel");
+            }
+
+            TempData["updated_fail"] = "Coś poszło nie tak...";
+            return View();
+        }
+
+        [Route("/Panel/DeleteTeacher/{id}")]
+        public async Task<IActionResult> DeleteTeacher(Guid id)
+        {
+            await _teacherService.DeleteAsync(id);
+
+            TempData["message_success"] = "Usunięto prowadzącego";
+            return RedirectToAction("Panel", "Panel");
         }
     }
 }
