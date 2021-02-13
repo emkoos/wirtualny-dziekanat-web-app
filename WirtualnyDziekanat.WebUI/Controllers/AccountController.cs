@@ -13,14 +13,12 @@ namespace WirtualnyDziekanat.WebUI.Controllers
 {
     public partial class AccountController : Controller
     {
-        private readonly AppDbContext _context;
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<AccountController> _logger;
         private readonly UserManager<User> _userManager;
 
-        public AccountController(AppDbContext context, SignInManager<User> signInManager,  ILogger<AccountController> logger, UserManager<User> userManager)
+        public AccountController(SignInManager<User> signInManager,  ILogger<AccountController> logger, UserManager<User> userManager)
         {
-            _context = context;
             _signInManager = signInManager;
             _logger = logger;
             _userManager = userManager;
@@ -96,10 +94,10 @@ namespace WirtualnyDziekanat.WebUI.Controllers
                     if (result.Succeeded)
                     {
                         await _userManager.AddToRoleAsync(user, "Worker");
-                        TempData["message_success"] = "Poprawnie utworzono użytkownika";
+                        TempData["message"] = "Poprawnie utworzono użytkownika";
                         return RedirectToAction("Panel", "Panel");
                     }
-                    TempData["message_fail"] = "Błąd w tworzeniu użytkownika";
+                    TempData["message_fail"] = "Błąd w tworzeniu użytkownika - przypisanie roli";
                     return View();
                 }
             }
