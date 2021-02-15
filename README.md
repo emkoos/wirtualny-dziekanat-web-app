@@ -23,7 +23,7 @@ Projekt miał na celu naukę oraz podnoszenie umiejętności w tworzeniu aplikac
 * AutoMapper
 * Identity ASP.NET Core, Jwt Bearer
 
-* Onion Architecture
+* Clean Architecture
 
 ## Do zrobienia
 Lista elementów pozostałych do ukończenia i stworzenia:
